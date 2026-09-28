@@ -50,3 +50,46 @@ try {
     }); ''
 } catch (e) { }
 
+
+
+try {
+    const tabs = document.querySelectorAll(".catalog__tab");
+    const contents = document.querySelectorAll(".catalog__content-item");
+
+    const getDisplayMode = () => {
+        return window.innerWidth >= 768 ? "grid" : "flex";
+    };
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+
+            tabs.forEach((t) => {
+                t.classList.remove("catalog__tab_active");
+            });
+
+            contents.forEach((content) => {
+                content.style.display = "none";
+            });
+
+            tab.classList.add("catalog__tab_active");
+
+            contents[index].style.display = getDisplayMode();
+        });
+    });
+
+    contents.forEach((content, index) => {
+        content.style.display = index === 0
+            ? getDisplayMode()
+            : "none";
+    });
+
+    window.addEventListener("resize", () => {
+        contents.forEach((content) => {
+            if (content.style.display !== "none") {
+                content.style.display = getDisplayMode();
+            }
+        });
+    });
+
+} catch (e) {
+}
