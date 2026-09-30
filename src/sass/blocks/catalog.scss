@@ -1,4 +1,5 @@
 @use "/src/sass/base/variables.scss" as *;
+@use "/src/sass/base/mixins.scss" as *;
 
 
 .catalog {
@@ -46,7 +47,9 @@
         }
     }
 
-
+    &__wrapper {
+        padding: 25px 25px 0;
+    }
 
 
     &__content-item {
@@ -63,15 +66,17 @@
         width: 340px;
         border: 1px solid $dark;
         box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        box-sizing: border-box;
     }
 
 
 
     &__card-image {
         display: block;
-        width: 100%;
-        height: 200px;
+        width: 340px;
+        height: 198px;
+        object-fit: cover;
+        max-inline-size: calc(100% + 2px);
+        transform: translateX(-1px) translateY(-1px);
     }
 
 
@@ -97,15 +102,27 @@
     .catalog {
         padding: 0;
 
+
         &__tabs {
             width: 459px;
             padding: 13px 20px;
         }
 
-        &__content-item {
-            margin: 70px 10px 60px;
-            display: grid;
-            grid-template-columns: repeat(2, 340px);
+        &__wrapper {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            padding: 10px 10px 0;
+            position: relative;
+            @include angle-decoration;
+        }
+
+        &__content {
+            &-item {
+                margin: 0;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+            }
         }
 
         &__card {
@@ -125,10 +142,16 @@
         padding: 0;
 
         &__content-item {
-            margin: 85px 25px 60px;
+            margin: 0;
             display: grid;
             grid-template-columns: repeat(3, 340px);
             gap: 35px;
+        }
+
+        &__wrapper {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            padding: 25px 25px 0;
         }
     }
 }
@@ -140,7 +163,7 @@
         padding: 0;
 
         &__content-item {
-            margin: 85px 25px 100px;
+            margin: 0;
             grid-template-columns: repeat(4, 285px);
             gap: 83px;
         }
